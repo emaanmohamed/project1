@@ -1,7 +1,7 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
 
-    <h1>post page {{$id}} {{$name}} {{$pass}}</h1>
+    {{--<h1>post page {{$id}} {{$name}} {{$pass}}</h1>--}}
 
-@stop
+{{--@stop--}}

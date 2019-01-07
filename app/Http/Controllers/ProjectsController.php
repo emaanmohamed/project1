@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class ProjectsController extends Controller
@@ -12,8 +11,6 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::all();
-
-        dd($projects);
 
         return view('projects.index', compact('projects'));
 
@@ -30,12 +27,22 @@ class ProjectsController extends Controller
 
          return view('projects.create');
      }
-     public function store()
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store()
      {
-         request()->validate([
-             'title'       => 'required',
-             'description' => 'required'
-         ]);
+         Project::create(
+
+             request()->validate([
+             'title'       => ['required', 'min:3'],
+             'description' => ['required', 'min:3'],
+             'password'    => ['required' ,'confirmed']
+
+             ])
+
+         );
 
          Project::created(request(['title'], 'description'));
 //         Project::created([

@@ -1,9 +1,9 @@
-@extends('layout')
+{{--@extends('layout')--}}
 
-@section('title', 'Contact Us')
+{{--@section('title', 'Contact Us')--}}
 
-@section('content')
+{{--@section('content')--}}
 
-    <h1>Contact Form</h1>
+    {{--<h1>Contact Form</h1>--}}
 
-    @endsection
+    {{--@endsection--}}

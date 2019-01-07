@@ -10,6 +10,12 @@ use App\Task;
 
 class ProjectTasksController extends Controller
 {
+
+    public function update()
+    {
+
+        dd('hello');
+    }
     public function store(Project $project)
     {
         Task::create([
