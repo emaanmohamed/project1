@@ -8,7 +8,8 @@
 
     <h1 class="title" style="margin-top: 30px">Edit Project</h1>
 
-    <form method="POST" action="/project1/public/projects/{{ $project->id }}" style="margin-bottom: 50px">
+    <form method="POST" action="{{url('/projects')}}/{{ $project->id }}" style="margin-bottom: 20px">
+
         {{ method_field('PATCH') }}
 
         {{csrf_field()}}
@@ -41,10 +42,12 @@
 
     </form>
 
-    <form method="POST" action="/project1/public/projects/{{ $project->id }}">
+    <form method="POST" action="{{url('/projects')}}/{{ $project->id }}">
+
+
+        {{ method_field('DELETE') }}
 
         {{csrf_field() }}
-        {{ method_field('DELETE') }}
 
         <div class="field">
 

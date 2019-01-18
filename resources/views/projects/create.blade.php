@@ -8,7 +8,7 @@
 
     <h1 class="title" style="margin-top: 30px">Create a new Project</h1>
 
-    <form method="POST" action="/project1/public/projects" style="margin-bottom: 50px">
+    <form method="POST" action="{{ url('projects') }}" style="margin-bottom: 50px">
         {{ method_field('POST') }}
 
         {{csrf_field()}}
@@ -32,7 +32,6 @@
             </div>
         </div>
         <div class="field">
-
             <div class="control">
                 <button type="submit" class="button is-link">Create Project</button>
 

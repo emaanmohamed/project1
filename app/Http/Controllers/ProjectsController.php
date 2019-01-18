@@ -16,8 +16,12 @@ class ProjectsController extends Controller
 
     }
 
-    public function show(Project $project)
+    public function show($id)
     {
+
+        $project = Project::findOrFail($id);
+
+       // dd($project);
 
         return view('projects.show', compact('project'));
     }
@@ -28,69 +32,75 @@ class ProjectsController extends Controller
          return view('projects.create');
      }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store()
      {
-         Project::create(
 
-             request()->validate([
-             'title'       => ['required', 'min:3'],
-             'description' => ['required', 'min:3'],
-             'password'    => ['required' ,'confirmed']
-
-             ])
-
-         );
-
-         Project::created(request(['title'], 'description'));
-//         Project::created([
-//             'title'        => request('title'),
-//             'description'  => request('description')
-//         ]);
-
-//         $project = new Project();
+//         Project::create(
 //
-//         $project->title = request('title');
+//             request()->validate([
+//             'title'       => ['required', 'min:3'],
+//             'description' => ['required', 'min:3'],
+//             'password'    => ['required' ,'confirmed']
 //
-//         $project->description = request('description');
-
-//         $project->save();
-
-         return redirect('/project1/public/projects');
-     }
-     public function edit(Project $project)
-     {
-
-            return view('projects.edit', compact('project'));
-     }
-
-     public function update(Project $project)
-     {
-
-         $project->update(request(['title', 'description']));
-
-//         $project->title = request('title');
+//             ])
 //
-//         $project->description = request('description');
+//         );
+//         return redirect( url('/projects'));
 
-//         $project = Project::findOrFail($id);
+       //  Project::created(request(['title'], 'description'));
 //
-//         $project->title = request('title');
-//
-//         $project->description = request('description');
-//
-   //
-         //        $project->save();
+//        $x = request()->validate([
+//             'title'       => ['required', 'min:3'],
+//             'description' => ['required', 'min:3']
+//        ]);
 
-         return redirect('/projects');
+
+         $project = new Project();
+
+         $project->title = request('title');
+
+         $project->description = request('description');
+
+         $project->save();
+
+           return redirect( url('/projects'));
      }
 
-     public function destroy(Project $project)
+    public function edit($id)
      {
+         $project = Project::findOrFail($id);
+
+         return view('projects.edit', compact('project'));
+
+     }
+
+     public function update($id)
+     {
+
+         $project = Project::findOrFail($id);
+
+         $project->title = request('title');
+
+         $project->description = request('description');
+
+         $project->update();
+
+         $project->save();
+
+         //dd($project);
+
+            redirect(url('/projects'));
+     }
+
+     public function destroy($id)
+     {
+
+         $project = Project::findOrFail($id);
+
         $project->delete();
+
         return redirect('/projects');
+
      }
 
 
